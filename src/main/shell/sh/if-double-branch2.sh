@@ -12,5 +12,5 @@ if [ "open" == "$status" ]
         echo "$(date) apache is ok!" >> /tmp/autostart-acc.log
     else
         /etc/init.d/httpd  restart &> /dev/null
-        echo "$(date) apache was restart!" >> /tmp/autostart-err.log
+        echo "$(date) apache was restarted!" >> /tmp/autostart-err.log
 fi
