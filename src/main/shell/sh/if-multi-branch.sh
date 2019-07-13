@@ -5,6 +5,7 @@
 # 接收键盘的输入，并赋予变量file
 read -p "Please input a filename:" file
 
+
 # 判断file变量是否为空
 if [ -z "$file" ]
     then
