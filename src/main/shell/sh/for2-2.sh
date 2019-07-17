@@ -14,13 +14,14 @@ echo -e "$namePrefix\t$num\t$pass"
 if [ -n $namePrefix -a -n $num -a -n $pass ]
     then
         # 判读用户数量是否为纯数字
-        testnum=$(echo $num | sed -e 's/[0-9]//g')
+        testnum=$(echo $num | sed -e 's/^[0-9]*$//g')
         echo "testnum: $testnum"
         if [ -z $testnum ]
             then
                echo "create user: $namePrefix$i..."
-               for (( i=0; i< $num; i++ )); do
-                   /usr/sbin/useradd "$namePrefix$i"
+               for (( i=1; i<= $num; i++ )); do
+                   # 正确无输出，错误有输出
+                   /usr/sbin/useradd "$namePrefix$i" &> /dev/null
                    echo "$pass" /usr/bin/passwd --stdin "$namePrefix$i" &> /dev/null
 
                    echo "User: $namePrefix-$i created."
