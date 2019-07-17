@@ -18,7 +18,13 @@ if [ -n $namePrefix -a -n $num -a -n $pass ]
         echo "testnum: $testnum"
         if [ -z $testnum ]
             then
-               echo "create user"
+               echo "create user: $namePrefix$i..."
+               for (( i=0; i< $num; i++ )); do
+                   /usr/sbin/useradd "$namePrefix$i"
+                   echo "$pass" /usr/bin/passwd --stdin "$namePrefix$i" &> /dev/null
+
+                   echo "User: $namePrefix-$i created."
+               done
             else
                 echo "Amount of users must be a pure number."
         fi
